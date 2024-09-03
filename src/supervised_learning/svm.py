@@ -21,29 +21,24 @@ class SVMManual:
 
     def fit(self, X, y):
         n_samples, n_features = X.shape
-        # konversi label dari 0/1 menjadi -1/1 sesuai dengan SVM
-        y_ = np.where(y <= 0, -1, 1)
+        y_ = np.where(y <= 0, -1, 1) # konversi label dari 0/1 menjadi -1/1 sesuai dengan SVM
         
-        # inisialisasi weight dan bias
-        self.w = np.zeros(n_features)
+        self.w = np.zeros(n_features) # inisialisasi weight dan bias
         self.b = 0
 
         # implementasi Stochastic Gradient Descent (SGD) untuk optimasi SVM
         for epoch in range(self.n_iters):
             for idx, x_i in enumerate(X):
-                # priksa apakah kondisi margin sudah terpenuhi
+                # periksa apakah kondisi margin sudah terpenuhi
                 condition = y_[idx] * (np.dot(x_i, self.w) - self.b) >= 1
                 if condition:
-                    # bila margin terpenuhi, hanya menerapkan L2 regularization
-                    self.w -= self.learning_rate * (2 * self.C * self.w)
+                    self.w -= self.learning_rate * (2 * self.C * self.w) # bila margin terpenuhi, hanya menerapkan L2 regularization
                 else:
-                    # bila margin tidak terpenuhi, update weight dan bias
-                    self.w -= self.learning_rate * (2 * self.C * self.w - np.dot(x_i, y_[idx]))
+                    self.w -= self.learning_rate * (2 * self.C * self.w - np.dot(x_i, y_[idx])) # bila margin tidak terpenuhi, update weight dan bias
                     self.b -= self.learning_rate * y_[idx]
 
     def predict(self, X):
-        # prediksi kelas berdasarkan tanda dari hasil dot product antara input X dan weight
-        approx = np.dot(X, self.w) - self.b
+        approx = np.dot(X, self.w) - self.b # prediksi kelas berdasarkan tanda dari hasil dot product antara input X dan weight
         return np.sign(approx)
     
     def get_params(self, deep=True):

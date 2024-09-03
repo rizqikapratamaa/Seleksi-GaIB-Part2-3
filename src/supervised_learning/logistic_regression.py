@@ -74,12 +74,10 @@ class LogisticRegressionManual:
                 X_batch = X
                 y_batch = y
 
-            # hitung output model
-            z = np.dot(X_batch, self.weights) + self.bias
+            z = np.dot(X_batch, self.weights) + self.bias # hitung output model
             y_pred = self.sigmoid(z)
 
-            # hitung cost untuk pemantauan
-            cost = self.compute_cost(y_batch, y_pred)
+            cost = self.compute_cost(y_batch, y_pred) # hitung cost untuk pemantauan
 
             # update weight dan bias berdasarkan metode optimasi yang dipilih
             if self.method == 'gradient_descent':

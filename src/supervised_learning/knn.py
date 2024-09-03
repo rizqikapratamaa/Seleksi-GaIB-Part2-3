@@ -33,27 +33,22 @@ class KNN:
                 raise ValueError("Invalid metric")
             distances.append(distance)
 
-        # urutkan jarak dan mendapatkan indeks dari k tetangga terdekat
-        k_indices = sorted(range(len(distances)), key=lambda i: distances[i])[:self.n_neighbors]
+        k_indices = sorted(range(len(distances)), key=lambda i: distances[i])[:self.n_neighbors] # urutkan jarak dan mendapatkan indeks dari k tetangga terdekat
 
         # ambil label dari k tetangga terdekat
         k_nearest_labels = [self.y_train[i] for i in k_indices]
         k_nearest_distances = [distances[i] for i in k_indices]
 
-        # return label yang paling umum di antara tetangga, dengan pembobotan berdasarkan jarak jika diaktifkan
-        return self._most_common_label(k_nearest_labels, k_nearest_distances)
+        return self._most_common_label(k_nearest_labels, k_nearest_distances) # return label yang paling umum di antara tetangga, dengan pembobotan berdasarkan jarak jika diaktifkan
 
     def _euclidean_distance(self, x1, x2):
-        # hitung jarak Euclidean antara dua titik
-        return np.sqrt(np.sum((np.array(x1) - np.array(x2)) ** 2))
+        return np.sqrt(np.sum((np.array(x1) - np.array(x2)) ** 2)) # hitung jarak Euclidean antara dua titik
 
     def _manhattan_distance(self, x1, x2):
-        # hitung jarak Manhattan antara dua titik
-        return np.sum(np.abs(np.array(x1) - np.array(x2)))
+        return np.sum(np.abs(np.array(x1) - np.array(x2))) # hitung jarak Manhattan antara dua titik
 
     def _minkowski_distance(self, x1, x2, p):
-        # hitung jarak Minkowski antara dua titik dengan parameter p
-        return np.sum(np.abs(np.array(x1) - np.array(x2)) ** p) ** (1 / p)
+        return np.sum(np.abs(np.array(x1) - np.array(x2)) ** p) ** (1 / p) # hitung jarak Minkowski antara dua titik dengan parameter p
 
     def _most_common_label(self, labels, distances):
         # tentukan label paling umum di antara tetangga
@@ -68,8 +63,7 @@ class KNN:
                     weighted_votes[label] = weight
             return max(weighted_votes, key=weighted_votes.get)
         else:
-            # voting sederhana berdasarkan jumlah label terbanyak
-            return Counter(labels).most_common(1)[0][0]
+            return Counter(labels).most_common(1)[0][0] # voting sederhana berdasarkan jumlah label terbanyak
 
     def get_params(self, deep=False):
         return {

@@ -45,8 +45,7 @@ class GaussianNaiveBayes:
         return np.array([self._posterior(x) for x in X])
 
     def predict_proba(self, X):
-        # hitung probabilitas untuk setiap kelas (opsional)
-        return np.array([self._gaussian_density(idx, x) * self.prior[idx] for idx, x in enumerate(X)])
+        return np.array([self._gaussian_density(idx, x) * self.prior[idx] for idx, x in enumerate(X)]) # hitung probabilitas untuk setiap kelas (opsional)
 
     def get_params(self, deep=True):
         return {}

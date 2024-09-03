@@ -89,8 +89,7 @@ class ANN:
             self.layers[i].weights -= self.learning_rate * d_weights
             self.layers[i].biases -= self.learning_rate * d_biases
 
-            # update d_activations untuk layer sebelumnya
-            d_activations = np.dot(d_z, self.layers[i].weights.T)
+            d_activations = np.dot(d_z, self.layers[i].weights.T) # update d_activations untuk layer sebelumnya
 
     def fit(self, X, y):
         for iteration in range(self.num_iterations):
