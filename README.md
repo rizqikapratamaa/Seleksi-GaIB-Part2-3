@@ -5,7 +5,7 @@
 
 ---
 
-## 🧠 Supervised Learning (Bagian 2)
+## 🔍 Supervised Learning (Bagian 2)
 
 - ✔️ **K-Nearest Neighbors (KNN)**
 - ✔️ **Logistic Regression**
@@ -28,3 +28,10 @@
 
 ### 🎉 Bonus yang Diimplementasikan:
 - Implementasi metode inisialisasi K-Means++
+
+---
+
+## 🧠 Reinforcement Learning (Bagian 4)
+
+- ✔️ **Q-LEARNING**
+- ✔️ **SARSA**
